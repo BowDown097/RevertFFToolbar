@@ -1,0 +1,58 @@
+:root {
+    --toolbar-non-lwt-bgcolor: -moz-dialog !important;
+    --toolbar-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.075), rgba(255,255,255,.075)) !important;
+    --tab-selected-non-lwt-bgimage: linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.15)) !important;
+    --toolbar-bgimage: var(--toolbar-non-lwt-bgimage) !important;
+    --tab-selected-bgimage: var(--tab-selected-non-lwt-bgimage) !important;
+}
+
+.browser-toolbar:not(.titlebar-color) {
+    background-image: var(--toolbar-bgimage);
+}
+
+@media not (prefers-contrast) {
+    :root:not(:-moz-lwtheme) {
+        --toolbar-non-lwt-bgcolor: #f9f9fb;
+        --toolbar-field-background-color: rgb(240,240,244);
+    }
+}
+
+:root:-moz-lwtheme {
+    --toolbar-bgimage: none;
+    --tab-selected-bgimage: none;
+}
+
+#customization-container {
+    background-image: var(--toolbar-non-lwt-bgimage);
+}
+
+#customization-container:-moz-lwtheme {
+    background-image: var(--toolbar-bgimage), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor));
+}
+
+.tabbrowser-tab[visuallyselected=true] {
+    position: relative;
+    z-index: 2;
+}
+
+.tab-label:is([selected], [attention]) {
+    font-weight: normal !important;
+}
+
+#tabbrowser-arrowscrollbox:not([scrolledtostart])::part(overflow-start-indicator),
+#tabbrowser-arrowscrollbox:not([scrolledtoend])::part(overflow-end-indicator) {
+    z-index: 3;
+}
+
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon,
+.tab-background:is([selected], [multiselected]) {
+    background-image: var(--tab-selected-bgimage, var(--toolbar-bgimage));
+}
+
+.tab-label[attention]:not([selected="true"]) {
+    font-weight: bold;
+}
+
+.tab-drop-indicator {
+    z-index: 3;
+}
